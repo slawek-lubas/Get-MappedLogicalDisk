@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-    GetMappedLogicalDisk - pobiera listê zamapowanych dysków sieciowych
+    GetMappedLogicalDisk - pobiera listê zamapowanych przez u¿ytkownika dysków sieciowych
 .DESCRIPTION
     
 .NOTES
     Information or caveats about the function e.g. 'This function is not supported in Linux'
 .EXAMPLE
-    Test-MyTestFunction -Verbose
-    Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+    GetMappedLogicalDisk -computerName CONTOSO-PC -userName USER1
+    Pobiera z komputera CONTOSO-PC listê zamapowanych przez u¿ytkownika USER1 dysków sieciowych
 #>
 function Get-MappedLogicalDisk {
     [CmdletBinding()]
