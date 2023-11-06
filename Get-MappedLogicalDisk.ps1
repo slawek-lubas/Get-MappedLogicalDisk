@@ -1,3 +1,4 @@
+#require 
 <#
 .SYNOPSIS
     GetMappedLogicalDisk - pobiera listê zamapowanych przez u¿ytkownika dysków sieciowych
@@ -12,7 +13,7 @@
 function Get-MappedLogicalDisk {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory)][String[]]$computerName,
+        [Parameter(Mandatory)][String]$computerName,
         [Parameter(Mandatory)][String]$userName
     )
     [String]$SID = $(Get-ADUser -Identity $userName).SID  
@@ -24,3 +25,5 @@ function Get-MappedLogicalDisk {
     $drive = Invoke-Command -ComputerName $computerName -ScriptBlock $scriptBlock
     $drive
 }
+
+Get-MappedLogicalDisk
