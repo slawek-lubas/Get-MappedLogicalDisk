@@ -16,18 +16,11 @@ function Get-MappedLogicalDisk {
         [Parameter(Mandatory)][String]$userName
     )
     [String]$SID = $(Get-ADUser -Identity $userName).SID  
-    write-host $SID
-
     $scriptBlock = {
-        New-PSDrive  -Name 'HKU' -PSProvider 'Registry' -Root 'HKEY_USERS'
-        $NetworkKey = 'HKU:\' + $Using:SID + '\Network\'
-        $MappedDrive = Get-ChildItem -Path $NetworkKey
+        $NetworkKey = 'Registry::HKEY_USERS\' + $Using:SID + '\Network\'
+        $MappedDrive = Get-ChildItem -Path $NetworkKey|Get-ItemProperty
         return $MappedDrive 
     }
-
-
     $drive = Invoke-Command -ComputerName $computerName -ScriptBlock $scriptBlock
     $drive
-    # Get-ChildItem
-    # Get-ItemProperty
 }
