@@ -1,9 +1,9 @@
 #require 
 <#
 .SYNOPSIS
-    GetMappedLogicalDisk - pobiera listê zamapowanych przez u¿ytkownika dysków sieciowych
+    GetMappedLogicalDisk - pobiera listê zamapowanych przez u¿ytkownika (AD) dysków sieciowych
 .DESCRIPTION
-    
+    Autor: S³awomir Lubas (slawek.lubas@gmail.com)
 .NOTES
     Information or caveats about the function e.g. 'This function is not supported in Linux'
 .EXAMPLE
@@ -16,14 +16,26 @@ function Get-MappedLogicalDisk {
         [Parameter(Mandatory)][String]$computerName,
         [Parameter(Mandatory)][String]$userName
     )
-    [String]$SID = $(Get-ADUser -Identity $userName).SID  
-    $scriptBlock = {
-        $NetworkKey = 'Registry::HKEY_USERS\' + $Using:SID + '\Network\'
-        $MappedDrive = Get-ChildItem -Path $NetworkKey|Get-ItemProperty
-        return $MappedDrive 
+    try {
+        [String]$SID = $(Get-ADUser -Identity $userName).SID      
     }
-    $drive = Invoke-Command -ComputerName $computerName -ScriptBlock $scriptBlock
-    $drive
+    catch {
+        Write-Host 'U¿ytkownik nie istnieje'
+        return
+    }
+    if (Test-Connection -ComputerName $computerName -Count 1 -ErrorAction SilentlyContinue)
+    {
+        $scriptBlock = {
+            $NetworkKey = 'Registry::HKEY_USERS\' + $Using:SID + '\Network\'
+            $MappedDrive = Get-ChildItem -Path $NetworkKey|Get-ItemProperty
+            return $MappedDrive 
+        }
+        $drive = Invoke-Command -ComputerName $computerName -ScriptBlock $scriptBlock
+        $drive
+    }
+    else {
+        Write-Host 'B³êdna nazwa komputera'
+    }
 }
 
-Get-MappedLogicalDisk
+#Get-MappedLogicalDisk
