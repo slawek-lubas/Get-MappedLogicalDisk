@@ -1,13 +1,13 @@
 #require 
 <#
 .SYNOPSIS
-    GetMappedLogicalDisk - pobiera listê zamapowanych przez u¿ytkownika (AD) dysków sieciowych
+    Get-MappedLogicalDisk - funkcja pobiera listê zamapowanych przez u¿ytkownika (AD) dysków sieciowych
 .DESCRIPTION
     Autor: S³awomir Lubas (slawek.lubas@gmail.com)
 .NOTES
-    
+    Plik modu³u PSM
 .EXAMPLE
-    GetMappedLogicalDisk -computerName CONTOSO-PC -userName USER1
+    Get-MappedLogicalDisk -computerName CONTOSO-PC -userName USER1
     Pobiera z komputera CONTOSO-PC listê zamapowanych przez u¿ytkownika USER1 dysków sieciowych
 #>
 function Get-MappedLogicalDisk {
