@@ -1,4 +1,3 @@
-#require 
 <#
 .SYNOPSIS
     Get-MappedLogicalDisk - funkcja pobiera listê zamapowanych przez u¿ytkownika (AD) dysków sieciowych
