@@ -5,7 +5,7 @@
 .DESCRIPTION
     Autor: S³awomir Lubas (slawek.lubas@gmail.com)
 .NOTES
-    Information or caveats about the function e.g. 'This function is not supported in Linux'
+    
 .EXAMPLE
     GetMappedLogicalDisk -computerName CONTOSO-PC -userName USER1
     Pobiera z komputera CONTOSO-PC listê zamapowanych przez u¿ytkownika USER1 dysków sieciowych
