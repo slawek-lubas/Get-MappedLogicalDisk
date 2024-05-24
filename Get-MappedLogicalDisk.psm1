@@ -6,7 +6,7 @@
     Autor: S³awomir Lubas (slawek.lubas@gmail.com)
 .NOTES
     Plik modu³u PSM
-.EXAMPLE
+.EXAMPLE 
     Get-MappedLogicalDisk -computerName CONTOSO-PC -userName USER1
     Pobiera z komputera CONTOSO-PC listê zamapowanych przez u¿ytkownika USER1 dysków sieciowych
 #>
